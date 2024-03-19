@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建虚拟dom</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="./js/react.development.js"></script>
+  <!-- 引入react-dom，用于支持react操作dom -->
+  <script type="text/javascript" src="./js/react-dom.development.js"></script>
+  <!-- 引入babel，用于将jsx转换为js -->
+  <script type="text/javascript" src="./js/babel.min.js"></script>
+
+  <!-- 如果使用jsx语法，此处必须写text/babel -->
+  <script type="text/babel">
+    const myData = {
+      myId: 'example',
+      message: 'hello,React'
+    }
+    // 创建虚拟dom
+    const vDom = (
+      <div>
+        <h1 id={myData.myId.toLowerCase()} className='title'>
+          <span style={{ color: 'red', fontSize: '10' }}>{myData.message.toLowerCase()}</span>
+        </h1>
+        <h1 id={myData.myId.toUpperCase()} className='title'>
+          <span style={{ color: 'yellow', fontSize: '20' }}>{myData.message.toUpperCase()}</span>
+        </h1>
+        <input type="text" />
+      </div>
+    )
+    // 渲染虚拟dom到页面
+    ReactDOM.render(
+      vDom,
+      document.getElementById('app')
+    )
+
+    /*
+      jsx语法规则：
+        1.定义虚拟dom时不能写引号
+        2.标签时混入js语法要用{}
+        3.样式的类名指定不要用class，因为class是es6中类的关键字/保留字，需要使用className
+        4.内联样式要用style：{{key：value}}的方式去写，最外层{}表示混入js语法，里层{}表示对象
+        5.只有一个根标签
+        6.标签必须闭合
+        7.若标签小写字母开头，则将该标签转换为html同名元素，找不到则会警告
+        若大写字母开头，react就去渲染对应的组件，没有则报错
+    */
+  </script>
+</body>
+
+</html>
