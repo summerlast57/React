@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建虚拟dom</title>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="text"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="./js/react.development.js"></script>
+  <!-- 引入react-dom，用于支持react操作dom -->
+  <script type="text/javascript" src="./js/react-dom.development.js"></script>
+  <!-- 引入babel，用于将jsx转换为js -->
+  <script type="text/javascript" src="./js/babel.min.js"></script>
+
+  <!-- 如果使用jsx语法，此处必须写text/babel -->
+  <script type="text/babel">
+    // 创建虚拟dom
+    // 如果使用js创建虚拟dom，面对多层嵌套标签时，需要多次使用React.createElement，麻烦且杂乱
+    // const vDom = React.createElement('h1',{id:'test'},React.createElement('span',{},'hello,react')
+    const vDom = (
+      <h1 id='text'>
+        <span>hello,React</span>
+        </h1>
+    )
+    // 渲染虚拟dom到页面
+    ReactDOM.render(
+      vDom,
+      document.getElementById('app')
+    )
+
+    console.log('虚拟dom',vDom);
+    console.log(typeof vDom);
+    console.log(vDom.constructor === Object);
+    const text = document.getElementById('text')
+    console.log('真实dom',text);
+    debugger
+    console.log(typeof text);
+    /*
+      虚拟dom本质上是object对象
+      虚拟dom的属性比真实dom的属性少，因为虚拟dom是react内部在使用，不需要真实dom那么多的属性
+      虚拟dom最终会被react转换成真实dom渲染到页面上
+    */
+  </script>
+</body>
+</html>

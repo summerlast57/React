@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsx语法小练习
+  </title>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="./js/react.development.js"></script>
+  <!-- 引入react-dom，用于支持react操作dom -->
+  <script type="text/javascript" src="./js/react-dom.development.js"></script>
+  <!-- 引入babel，用于将jsx转换为js -->
+  <script type="text/javascript" src="./js/babel.min.js"></script>
+
+  <!-- 如果使用jsx语法，此处必须写text/babel -->
+  <script type="text/babel">
+    const data = ['Javascript','Java','Mysql']
+    
+    // 创建虚拟dom
+    const vDom = (
+      <div>
+        <h1>前端jsx列表</h1>
+        <ul>
+          {
+            data.map((item,index)=>{
+              return <li key={index}>{item}</li>
+            })
+          }
+        </ul>
+      </div>
+    )
+    // 渲染虚拟dom到页面
+    ReactDOM.render(
+      vDom,
+      document.getElementById('app')
+    )
+  </script>
+</body>
+</html>
