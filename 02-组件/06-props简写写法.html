@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>props简写</title>
+</head>
+<body>
+  <div id="test1"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-type.js，用于对组件标签属性进行限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+
+  <script type="text/babel">
+    // 创建类式组件
+    class Person extends React.Component{
+      constructor(props){
+        // 构造器是否接收props，是否传递给super，取决于：是否希望在构造器中通过this访问props
+        super(props)
+        console.log(this.props);
+      }
+
+      // 对标签属性进行限制，必要性的限制
+      static protoTypes={
+        name:PropTypes.string.isRequired, //限制name必传，且为字符串
+        age:PropTypes.number,  //限制age为数字
+        sex:PropTypes.string, //限制sex为字符串
+      }
+      // 指定标签默认属性值
+      static defaultProps={
+        sex:'boy',  //默认值为boy
+        age:18  //默认值为18
+      }
+      render(){
+        const {name,age,sex} = this.props
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>性别：{age+1}</li>
+            <li>年龄：{sex}</li>
+          </ul>
+        )
+      }
+    }
+    
+    ReactDOM.render(<Person name='tom'/>,document.getElementById('test1'))
+  </script>
+</body>
+</html>

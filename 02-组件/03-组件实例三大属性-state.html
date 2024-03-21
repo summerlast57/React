@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件实例三大属性-state</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    // 创建类式组件
+    class Weather extends React.Component{
+
+      // 构造器调用几次？—— 1次
+      constructor(props){
+        super(props)
+        // 初始化状态
+        this.state = {isHot:true,wind:'微风'}
+        // 解决changeWeather中的this指向问题
+        this.changeWeather = this.changeWeather.bind(this)
+      }
+
+      // render调用几次？——1+n次，1是初始化的那次，n是状态更新的次数
+      render(){
+        // 事件名需要将onclick改为onClick
+        return <h1 onClick={this.changeWeather}>今天天气{this.state.isHot?'炎热':'凉爽'}，{this.state.wind}</h1>
+      }
+
+      // changeWeather调用几次？—— 事件触发多少次调用多少次
+      changeWeather(){
+        // changeWeather放在那里？——Weather的原型对象上，供实例使用
+        // 由于changeWeather是作为onClick的回调，所以不是通过实例调用的，是直接调用
+        // 类中的方法默认开启了局部严格模式，所以changeWeather的this是undefined
+
+        // 严重注意：状态（state）不可直接更改，必须通过React中内置的一个API即setState进行更新
+        // 且更新是一种合并，不是替换
+        const isHot = this.state.isHot
+        this.setState({isHot:!isHot})
+        console.log(this.state.isHot);
+      }
+    }
+    ReactDOM.render(<Weather/>,document.getElementById('app'))
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件实例三大属性-props</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-type.js，用于对组件标签属性进行限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+
+  <script type="text/babel">
+    // 创建类式组件
+    class Person extends React.Component{
+      render(){
+        const {name,age,sex} = this.props
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>性别：{age+1}</li>
+            <li>年龄：{sex}</li>
+          </ul>
+        )
+      }
+    }
+    // 对标签属性进行限制，必要性的限制
+    Person.protoTypes={
+      name:PropTypes.string.isRequired, //限制name必传，且为字符串
+      age:PropTypes.number,  //限制age为数字
+      sex:PropTypes.string, //限制sex为字符串
+      speak:PropTypes.func  //限制为函数
+    }
+    // 指定标签默认属性值
+    Person.defaultProps={
+      sex:'boy',  //默认值为boy
+      age:18  //默认值为18
+    }
+    ReactDOM.render(<Person name='tom' age={18} sex='boy'/>,document.getElementById('test1'))
+
+    const p = {name:'jack',age:20,sex:'girl'}
+    // {...p}可以将对象展开，但该语法仅能在组件中使用，其他地方使用会报错
+    ReactDOM.render(<Person {...p} speak={speak}/>,document.getElementById('test2'))
+
+    function speak(){
+      console.log('lalalala');
+    }
+  </script>
+</body>
+</html>

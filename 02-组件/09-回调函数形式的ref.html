@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调函数形式的ref</title>
+</head>
+
+<body>
+  <div id="test1"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-type.js，用于对组件标签属性进行限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+
+  <script type="text/babel">
+    // 创建类式组件
+    class Demo extends React.Component {
+      showData1 = () => {
+        const { input1 } = this
+        alert(input1.value)
+      }
+      showData2 = () => {
+        const { input2 } = this
+        alert(input2.value)
+      }
+      render() {
+        const { name, age, sex } = this.props
+        return (
+          <div>
+            <input ref={(currentNode)=>this.input1 = currentNode} type="text" placeholder='点击按钮输出内容' />&nbsp;
+            <button onClick={this.showData1}>点击输出左侧的数据</button>&nbsp;
+            <input ref={(currentNode)=>this.input2 = currentNode}  onBlur={this.showData2} type="text" placeholder='失去焦点输出内容' />
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Demo />, document.getElementById('test1'))
+  </script>
+</body>
+
+</html>

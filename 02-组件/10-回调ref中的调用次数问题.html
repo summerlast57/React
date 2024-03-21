@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调ref的调用次数问题</title>
+</head>
+
+<body>
+  <div id="test1"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-type.js，用于对组件标签属性进行限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+
+  <script type="text/babel">
+    // 创建类式组件
+    class Demo extends React.Component {
+      state = {isHot:true}
+      changeWeather =()=>{
+        const isHot = this.state.isHot
+        this.setState({isHot:!isHot})
+      }
+      showData1 = () => {
+        const { input1 } = this
+        alert(input1.value)
+      }
+      showData2 = () => {
+        const { input2 } = this
+        alert(input2.value)
+      }
+      alertData = (c)=>{
+        this.input1 = c;
+        console.log("@",c);
+      }
+      render() {
+        const { name, age, sex } = this.props
+        return (
+          <div>
+            <h2>今天天气{this.state.isHot?'炎热':'凉爽'}</h2>
+            {/*<input ref={(c)=>{this.input1 = c;console.log("@",c);}} type="text" placeholder='点击按钮输出内容' />&nbsp;*/}
+            <input ref={this.alertData} type="text" placeholder='点击按钮输出内容' />&nbsp;
+            <button onClick={this.showData1}>点击输出数据</button>&nbsp;
+            <button onClick={this.changeWeather}>修改天气</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Demo />, document.getElementById('test1'))
+    /* 
+      使用内联回调函数时，当状态更新时，其内联函数会执行两次，第一次传入参数为null，第二次传入参数为Dom元素
+     */
+  </script>
+</body>
+
+</html>
