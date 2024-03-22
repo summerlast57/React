@@ -1,0 +1,72 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .list {
+      height: 150px;
+      width: 200px;
+      background-color: aqua;
+      overflow: auto;
+    }
+
+    .news {
+      height: 30px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="div"></div>
+
+</body>
+
+<script type="text/javascript" src="../js/17.0/react.development.js"></script>
+<script type="text/javascript" src="../js/17.0/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<!-- 引入prop-type.js，用于对组件标签属性进行限制 -->
+<script type="text/javascript" src="../js/17.0/prop-types .js"></script>
+
+<script type="text/babel">
+
+  class New extends React.Component {
+
+    state = { num: [] };
+
+    //在组件创建之后
+    componentDidMount() {
+      setInterval(() => {
+        let { num } = this.state;
+        const news = (num.length + 1);
+        this.setState({ num: [news, ...num] });
+      }, 2000);
+    }
+
+    getSnapshotBeforeUpdate() {
+      return this.refs.list.scrollHeight;
+    }
+
+    componentDidUpdate(preProps, preState, height) {
+      this.refs.list.scrollTop += (this.refs.list.scrollHeight - height);
+    }
+
+    render() {
+      return (
+
+        <div ref="list" className="list">{
+          this.state.num.map((n, index) => {
+            return <div className="news" key={index} >新闻{n}</div>
+          })
+        }</div>
+      )
+    }
+  }
+
+  ReactDOM.render(<New />, document.getElementById("div"));
+
+</script>
+
+</html>
