@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>验证diffing算法</title>
+</head>
+
+<body>
+  <div id="test"></div>
+
+  <script type="text/javascript" src="../js/17.0/react.development.js"></script>
+  <script type="text/javascript" src="../js/17.0/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-type.js，用于对组件标签属性进行限制 -->
+  <script type="text/javascript" src="../js/17.0/prop-types .js"></script>
+
+  <script type="text/babel">
+    class Time extends React.Component {
+      state = { time: '' }
+
+      componentDidMount() {
+        setInterval(() => {
+          const time = new Date()
+          this.setState({ time: time.toTimeString() })
+        }, 1000);
+
+      }
+      render() {
+        return (
+          <div>
+            <h2>hello</h2>
+            <input type="text" />
+            <span>
+              现在是：{this.state.time}
+              <input type="text" />
+            </span>
+
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Time />, document.getElementById('test'))
+  </script>
+</body>
+
+</html>
