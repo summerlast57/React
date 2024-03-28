@@ -1,0 +1,10 @@
+.list-group{
+  float:left;
+  margin:25px 0 0 30%;
+  width: 80px;
+  text-align: center;
+}
+.panel-body{
+  float:left;
+  width:20%
+}
