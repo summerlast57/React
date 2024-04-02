@@ -738,7 +738,7 @@ class Login extends React.Component {
 
 下面是旧生命周期的结构图：
 
-![image-20240322215338092](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240322215338092.png)
+![image-20240322215338092](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022023861.png)
 
 ```
 <!DOCTYPE html>
@@ -892,7 +892,7 @@ class Login extends React.Component {
 
 下面是新生命周期的结构：
 
-![image-20240322215553216](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240322215553216.png)
+![image-20240322215553216](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022029499.png)
 
 从图上可以看出，新生命周期和旧生命周期的区别主要有：
 
@@ -1136,7 +1136,7 @@ npm install create-react-app -g
 
 1. 查看当前的npm镜像：`npm config list`
 
-![image-20240323150038789](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240323150038789.png)
+![image-20240323150038789](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022032362.png)
 
 2. 清空缓存：`npm cache clean --force`
 3. 然后修改镜像即可：`npm config set registry https://registry.npmmirror.com`
@@ -1159,7 +1159,7 @@ npm install create-react-app -g
 
 我们来看一下public这个目录下面的结构
 
-![image-20240323153646783](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240323153646783.png)
+![image-20240323153646783](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022032632.png)
 
 这里面最主要的还是这个Index.html文件：
 
@@ -1198,7 +1198,7 @@ npm install create-react-app -g
 
 src目录：
 
-![image-20240323153618208](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240323153618208.png)
+![image-20240323153618208](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022032155.png)
 
 这里面其实最主要的就是App.js以及index.js，一个是组件，一个是将组件渲染到页面中的。
 
@@ -1636,11 +1636,11 @@ match:
 
 这里面会有一个样式：
 
-![image-20240324194633495](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240324194633495.png)
+![image-20240324194633495](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022032352.png)
 
 此时，加载该样式的路径为：
 
-![image-20240324194656187](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240324194656187.png)
+![image-20240324194656187](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022032002.png)
 
 但是在写路由的时候，有的时候就会出现多级目录，
 
@@ -1654,9 +1654,9 @@ match:
 
 样式因为路径问题加载失败，此时页面返回public下面的Index.html
 
-![image-20240324194747761](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240324194747761.png)
+![image-20240324194747761](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022032757.png)
 
-![image-20240324194831568](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240324194831568.png)
+![image-20240324194831568](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022032147.png)
 
 解决这个问题，有三个方法：
 
@@ -1782,7 +1782,7 @@ react中路由的注册是有顺序的，因此在匹配的时候也是按照这
 
 向路由组件传递参数有三种方式：
 
-![image-20240324223433761](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240324223433761.png)
+![image-20240324223433761](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022033270.png)
 
 **注意：当使用state参数时，注意把路由链接中path改为pathname，否则无反应**
 
@@ -2273,7 +2273,7 @@ export default function Detail() {
 
 ### 2.Redux的工作流程
 
-![image-20240325174727800](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240325174727800.png)
+![image-20240325174727800](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022033305.png)
 
 首先组件会在 Redux 中派发一个 `action` 方法，通过调用 `store.dispatch` 方法，将 `action` 对象派发给 `store` ，当 `store` 接收到 `action` 对象时，会将先前的 `state` 与传来的 `action` 一同发送给 `reducer` ，`reducer` 在接收到数据后，进行数据的更改，返回一个新的状态给 `store` ，最后由 `store` 更改 `state`
 
@@ -2497,7 +2497,7 @@ UI 组件 ---> action ---> store ---> reducer ---> store
 3. UI 组件无任何 Redux API
 4. 容器组件用于处理逻辑，UI 组件只会负责渲染和交互，不处理逻辑
 
-![image-20240327010017564](E:/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/images/image-20240327010017564.png)
+![image-20240327010017564](https://cdn.jsdelivr.net/gh/summerlast57/TyporaPicture@main/picture/202404022033634.png)
 
 在我们的生产当中，我们可以直接将 UI 组件写在容器组件的代码文件当中，这样就无需多个文件
 
